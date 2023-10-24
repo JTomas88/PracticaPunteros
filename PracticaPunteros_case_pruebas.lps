@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <PathDelim Value="\"/>
+    <Version Value="12"/>
+    <BuildModes Active="Default"/>
+    <Units>
+      <Unit>
+        <Filename Value="PracticaPunteros_case_pruebas.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="337"/>
+        <CursorPos X="14" Y="348"/>
+        <UsageCount Value="46"/>
+        <Loaded Value="True"/>
+      </Unit>
+    </Units>
+    <JumpHistory HistoryIndex="29">
+      <Position>
+        <Filename Value="PracticaPunteros_case_pruebas.lpr"/>
+        <Caret Line="342" TopLine="335"/>
+      </Position>
+      <Position>
+        <Filename Value="PracticaPunteros_case_pruebas.lpr"/>
+        <Caret Line="343" TopLine="335"/>
+      </Position>
+      <Position>
+        <Filename Value="PracticaPunteros_case_pruebas.lpr"/>
+        <Caret Line="344" TopLine="335"/>
+      </Position>
+      <Position>
+        <Filename Value="PracticaPunteros_case_pruebas.lpr"/>
+        <Caret Line="345" TopLine="335"/>
+      </Position>
+      <Position>
+        <Filename Value="PracticaPunteros_case_pruebas.lpr"/>
+        <Caret Line="349" TopLine="335"/>
+      </Position>
+      <Position>
+        <Filename Value="PracticaPunteros_case_pruebas.lpr"/>
+        <Caret Line="350" TopLine="335"/>
+      </Position>
+      <Position>
+        <Filename Value="PracticaPunteros_case_pruebas.lpr"/>
+        <Caret Line="126" TopLine="112"/>
+      </Position>
+      <Position>
+        <Filename Value="PracticaPunteros_case_pruebas.lpr"/>
+        <Caret Line="128" TopLine="112"/>
+      </Position>
+      <Position>
+        <Filename Value="PracticaPunteros_case_pruebas.lpr"/>
+        <Caret Line="132" TopLine="112"/>
+      </Position>
+      <Position>
+        <Filename Value="PracticaPunteros_case_pruebas.lpr"/>
+        <Caret Line="133" TopLine="112"/>
+      </Position>
+      <Position>
+        <Filename Value="PracticaPunteros_case_pruebas.lpr"/>
+        <Caret Line="136" TopLine="114"/>
+      </Position>
+      <Position>
+        <Filename Value="PracticaPunteros_case_pruebas.lpr"/>
+        <Caret Line="142" TopLine="130"/>
+      </Position>
+      <Position>
+        <Filename Value="PracticaPunteros_case_pruebas.lpr"/>
+        <Caret Line="150" TopLine="130"/>
+      </Position>
+      <Position>
+        <Filename Value="PracticaPunteros_case_pruebas.lpr"/>
+        <Caret Line="151" TopLine="130"/>
+      </Position>
+      <Position>
+        <Filename Value="PracticaPunteros_case_pruebas.lpr"/>
+        <Caret Line="152" TopLine="131"/>
+      </Position>
+      <Position>
+        <Filename Value="PracticaPunteros_case_pruebas.lpr"/>
+        <Caret Line="153" TopLine="141"/>
+      </Position>
+      <Position>
+        <Filename Value="PracticaPunteros_case_pruebas.lpr"/>
+        <Caret Line="157" TopLine="141"/>
+      </Position>
+      <Position>
+        <Filename Value="PracticaPunteros_case_pruebas.lpr"/>
+        <Caret Line="158" TopLine="141"/>
+      </Position>
+      <Position>
+        <Filename Value="PracticaPunteros_case_pruebas.lpr"/>
+        <Caret Line="159" TopLine="141"/>
+      </Position>
+      <Position>
+        <Filename Value="PracticaPunteros_case_pruebas.lpr"/>
+        <Caret Line="160" TopLine="141"/>
+      </Position>
+      <Position>
+        <Filename Value="PracticaPunteros_case_pruebas.lpr"/>
+        <Caret Line="152" TopLine="141"/>
+      </Position>
+      <Position>
+        <Filename Value="PracticaPunteros_case_pruebas.lpr"/>
+        <Caret Line="153" TopLine="141"/>
+      </Position>
+      <Position>
+        <Filename Value="PracticaPunteros_case_pruebas.lpr"/>
+        <Caret Line="154" TopLine="141"/>
+      </Position>
+      <Position>
+        <Filename Value="PracticaPunteros_case_pruebas.lpr"/>
+        <Caret Line="155" TopLine="141"/>
+      </Position>
+      <Position>
+        <Filename Value="PracticaPunteros_case_pruebas.lpr"/>
+        <Caret Line="156" TopLine="141"/>
+      </Position>
+      <Position>
+        <Filename Value="PracticaPunteros_case_pruebas.lpr"/>
+        <Caret Line="152" TopLine="141"/>
+      </Position>
+      <Position>
+        <Filename Value="PracticaPunteros_case_pruebas.lpr"/>
+        <Caret Line="172" TopLine="159"/>
+      </Position>
+      <Position>
+        <Filename Value="PracticaPunteros_case_pruebas.lpr"/>
+        <Caret Line="341" TopLine="328"/>
+      </Position>
+      <Position>
+        <Filename Value="PracticaPunteros_case_pruebas.lpr"/>
+        <Caret Line="342" TopLine="328"/>
+      </Position>
+      <Position>
+        <Filename Value="PracticaPunteros_case_pruebas.lpr"/>
+        <Caret Line="347" TopLine="328"/>
+      </Position>
+    </JumpHistory>
+    <RunParams>
+      <FormatVersion Value="2"/>
+      <Modes ActiveMode=""/>
+    </RunParams>
+  </ProjectSession>
+</CONFIG>
