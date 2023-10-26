@@ -1,5 +1,6 @@
 program PracticaPunteros_case_pruebas;
 
+
 type
   TListaNumeros=^TNodo;
   TNodo=record
@@ -356,7 +357,6 @@ begin
               ' -> El primer numero que se repita [PRIMER]' +#13#10+
               ' -> Ultimo numero que se repita [ULTIMO] >>');
       readln (opcion3Usuario);
-
       primerOultimo:=TRUE;
       if (opcion3Usuario='PRIMER') or (opcion3Usuario='primer') then begin
         apuntador:=lista;
@@ -366,37 +366,31 @@ begin
             apuntador:=apuntador^.siguiente;
             siguiente:=apuntador;
             break;
-          end else begin
-           anterior:=apuntador;
-           apuntador:=apuntador^.siguiente;
           end;
+         apuntador:=apuntador^.siguiente;
         end;
 
+         siguiente:=apuntador;
+         anterior:=NIL;
+        while siguiente<>NIL do begin
+          if (siguiente^.numero=numeroUsuario) then begin
+                if siguiente^.numero<>numeroUsuario then begin
+                  anterior:=siguiente;
+                  siguiente:=siguiente^.siguiente;
+                end else if siguiente=lista then begin {>> estoy al principio de la lista}
+                 lista:=lista^.siguiente;
+                 dispose(siguiente);
+               end else if siguiente^.siguiente=NIL then begin {>> estoy al final de la lista}
+                  anterior^.siguiente:=NIL;
+                  dispose (siguiente);
+               end else if siguiente<>NIL then begin {>> estoy en medio de la lista}
+                 anterior^.siguiente:=siguiente^.siguiente;
+                 dispose(siguiente);
 
-
-            siguiente:=apuntador;;
-            while siguiente<>NIL do begin
-               if siguiente^.numero=numeroUsuario then begin
-                 anterior:=siguiente;
-                 siguiente:=siguiente^.siguiente;
-               end else if siguiente=lista then begin {>> estoy al principio de la lista}
-                lista:=lista^.siguiente;
-                dispose(siguiente);
-              end else if siguiente^.siguiente=NIL then begin {>> estoy al final de la lista}
-                 anterior^.siguiente:=NIL;
-                 dispose (siguiente);
-              end else if siguiente<>NIL then begin {>> estoy en medio de la lista}
-                anterior^.siguiente:=siguiente^.siguiente;
-                dispose(siguiente);
-              end;
-
-            siguiente:=siguiente^.siguiente;
-
-        end; // while
-
+               end;
+          end;
+          siguiente:=siguiente^.siguiente;
         end;
-
-
 
       end else if (opcion3Usuario='ULTIMO') or (opcion3Usuario='ultimo') then begin
       //
@@ -404,6 +398,8 @@ begin
 
     end;
 
+
+  end;
 
 
 
@@ -536,3 +532,4 @@ until opcionUsuario='0';
 
 readln;
 end.
+

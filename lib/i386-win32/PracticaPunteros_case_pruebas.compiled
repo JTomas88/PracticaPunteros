@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <Compiler Value="C:\lazarus\fpc\3.2.2\bin\i386-win32\fpc.exe" Date="1449428771"/>
+  <Params Value=" -MObjFPC -Scghi -O1 -gw3 -gl -l -vewnhibq &quot;-FiC:\Users\Tomy\Desktop\Programación Tomy\E J E R C I C I O S\Seccion 10 Memoria dinámica con punteros\PracticaPunteros\lib\i386-win32&quot; &quot;-FuC:\Users\Tomy\Desktop\Programación Tomy\E J E R C I C I O S\Seccion 10 Memoria dinámica con punteros\PracticaPunteros\&quot; &quot;-FUC:\Users\Tomy\Desktop\Programación Tomy\E J E R C I C I O S\Seccion 10 Memoria dinámica con punteros\PracticaPunteros\lib\i386-win32\&quot; &quot;-FEC:\Users\Tomy\Desktop\Programación Tomy\E J E R C I C I O S\Seccion 10 Memoria dinámica con punteros\PracticaPunteros\&quot; &quot;-oC:\Users\Tomy\Desktop\Programación Tomy\E J E R C I C I O S\Seccion 10 Memoria dinámica con punteros\PracticaPunteros\PracticaPunteros_case_pruebas.exe&quot; PracticaPunteros_case_pruebas.lpr"/>
+</CONFIG>
