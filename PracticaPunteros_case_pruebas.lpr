@@ -173,7 +173,7 @@ begin
     lista:=lista^.siguiente;
     dispose(apuntador);
     result:=true;
-    exit; //25/10
+    exit;
   end else if apuntador^.siguiente=NIL then begin {>> estoy al final de la lista}
      anterior^.siguiente:=NIL;
      dispose (apuntador);
@@ -181,7 +181,7 @@ begin
     anterior^.siguiente:=apuntador^.siguiente;
     dispose(apuntador);
     result:=true;
-    exit; //25/10
+    exit;
 
   end;
  end;
@@ -276,9 +276,6 @@ begin
   if apuntador=listaReves then begin {>> estoy al principio de la lista}
     listaReves:=listaReves^.siguiente;
     dispose(apuntador);
-  {end else if apuntador^.siguiente=NIL then begin {>> estoy al final de la lista}
-     anterior^.siguiente:=NIL;
-     dispose (apuntador); }
   end else if apuntador<>NIL then begin {>> estoy en medio de la lista}
     anterior^.siguiente:=apuntador^.siguiente;
     dispose(apuntador);
@@ -309,13 +306,12 @@ aparece. En el segundo caso se eliminarán todos los nodos que contienen el núm
 el último en que aparece.}
 procedure borrarOcurrencias (numeroUsuario:integer; todasRepeticiones, primerOultimo: boolean; var lista: TListaNumeros);
 var
-  apuntador, siguiente, anterior: TListaNumeros;
-  validacionOcurrencia, validacionPrimerUltimo ,repetido:boolean;
+  apuntador, siguiente, anterior, auxiliar, listaReves: TListaNumeros;
+  EliminarTodasRepeticiones, DejarPrimeraRepeticion ,repetido:boolean;
 begin
 
-  todasRepeticiones:=false;
-  primerOultimo:=false;
-  repetido:= false;
+  EliminarTodasRepeticiones:=false;
+
 
   {pedimos al usuario el numero que quiere encontrar:}
   write ('Numero a encontrar>>> ');
@@ -327,6 +323,7 @@ begin
   writeln;
 
       if (opcion2Usuario='S') or (opcion2Usuario='s') then begin
+        EliminarTodasRepeticiones:=true;
         if numerosAImprimir=0 then begin
           apuntador:=NIL;
           writeln ('No hay nodos para borrar en la lista');
@@ -344,11 +341,13 @@ begin
           writeln ('El numero indicado no esta en la lista');
           exit;
         end;
-        todasRepeticiones:=true;
+        //todasRepeticiones:=true;
 
-      while validacionOcurrencia do begin
-       validacionOcurrencia:=borrarPrimeraOcurrencia (numeroUsuario, lista);
+      while EliminarTodasRepeticiones do begin
+       EliminarTodasRepeticiones:=borrarPrimeraOcurrencia (numeroUsuario, lista);
       end;
+
+      EliminarTodasRepeticiones:=true;
 
 
     end else if (opcion2Usuario='N') or (opcion2Usuario='n') then begin
@@ -356,54 +355,98 @@ begin
               ' -> El primer numero que se repita [PRIMER]' +#13#10+
               ' -> Ultimo numero que se repita [ULTIMO] >>');
       readln (opcion3Usuario);
+      EliminarTodasRepeticiones:=false;
+      DejarPrimeraRepeticion:=false;
 
-      primerOultimo:=TRUE;
-      if (opcion3Usuario='PRIMER') or (opcion3Usuario='primer') then begin
-        apuntador:=lista;
-         anterior:=NIL;
-        while apuntador<>NIL do begin
-          if (apuntador^.numero=numeroUsuario) then begin
-            apuntador:=apuntador^.siguiente;
-            siguiente:=apuntador;
-            break;
-          end else begin
-           anterior:=apuntador;
-           apuntador:=apuntador^.siguiente;
-          end;
+
+      {1. Comprueba la entrada del usuario para ver que opción ha escogido.
+          Tras esto inicializa la variable booleana DejarPrimeraRepeticion,
+          los nodos y la variable 'repetido' que se usará para poder realizar
+          el procedimiento.
+       2. While: comprueba que 'apuntador' no sea nulo y dentro comprueba si el
+          numero que contiene el nodo es el mismo que el del usuario.
+          Si es el mismo pone la variable 'repetido' en true, sale del if y se va
+          al siguiente nodo saltando a la linea 'anterior^.siguiente:=apuntador^.siguiente'.
+          Con las lineas 'anterior:=apuntador' hace una copia de seguridad de apuntador en
+          anterior y con 'apuntador:=apuntador^.siguiente' avanza un nodo más.
+          Sube de nuevo al while y comprueba el siguiente nodo. Cuando se encuentra con un
+          nodo que contiene el mismo del usuario entra de nuevo en la variable 'repetido', pero
+          repetido ya está en true y saltaría a 'if anterior=NIL then begin' para validar
+          el nodo anterior (nunca va a ser nulo) y por lo tanto pasa a 'anterior^.siguiente:=apuntador^.siguiente'
+          que el siguiente nodo que tenga apuntador lo pasa al siguiente que tenga anterior, lo sobreescribe sin borrar
+          el anterior.
+       3. Cuando ha resuelto las validaciones anterior y el nº que está validando es el mismo
+       que el del usuario, sin ser el primero que se repite, entonces pasa ese valor a la lista 'auxiliar',
+       le dice que pase el siguiente nodo de apuntador a apuntador y borra el que tenemos en auxiliar. Con
+       el continue sigue el procedimiento y volvería al while hasta completar toda la lista. }
+      {1}if (opcion3Usuario='PRIMER') or (opcion3Usuario='primer') then begin
+           DejarPrimeraRepeticion:=true;
+           apuntador:=lista;
+           anterior:=NIL;
+           repetido:=false;{<<Funciona similar a un semáforo}
+
+        {2}while apuntador<>NIL do begin
+             if apuntador^.numero=numeroUsuario then begin
+               if not repetido then begin
+                 repetido:=true;
+             end else begin
+               if anterior=NIL then begin
+                 lista:=apuntador^.siguiente
+             end else begin
+                 anterior^.siguiente:=apuntador^.siguiente;
+            end;
+        {3}      auxiliar:=apuntador;
+                 apuntador:=apuntador^.siguiente;
+                 dispose (auxiliar);
+                 continue;
+            end;
+         end;
+
+         anterior:=apuntador;
+         apuntador:=apuntador^.siguiente;
+
         end;
 
 
-
-            siguiente:=apuntador;;
-            while siguiente<>NIL do begin
-               if siguiente^.numero=numeroUsuario then begin
-                 anterior:=siguiente;
-                 siguiente:=siguiente^.siguiente;
-               end else if siguiente=lista then begin {>> estoy al principio de la lista}
-                lista:=lista^.siguiente;
-                dispose(siguiente);
-              end else if siguiente^.siguiente=NIL then begin {>> estoy al final de la lista}
-                 anterior^.siguiente:=NIL;
-                 dispose (siguiente);
-              end else if siguiente<>NIL then begin {>> estoy en medio de la lista}
-                anterior^.siguiente:=siguiente^.siguiente;
-                dispose(siguiente);
-              end;
-
-            siguiente:=siguiente^.siguiente;
-
-        end; // while
-
-        end;
-
-
-
+      {1. Para eliminar todas las repeticiones menos la última, damos la vuelta a la lista
+          y hacemos lo mismo que en el paso anterior cuando queriamos dejar sólo la primera
+          repetición.
+      2. Cuando hemos eliminado los nodos que nos interesan volvemos a llamar a 'leerListaAlReves'
+         para que la lista vuelva a su estado inicial, pero con los nodos que hemos eliminado. }
       end else if (opcion3Usuario='ULTIMO') or (opcion3Usuario='ultimo') then begin
-      //
+
+      apuntador:=lista;
+      DejarPrimeraRepeticion:=false;
+      repetido:=false;
+
+      {1}listaReves:= LeerListaAlReves(apuntador);
+         apuntador:=listaReves;
+
+         while apuntador<>NIL do begin
+           if apuntador^.numero=numeroUsuario then begin
+             if not repetido then begin
+               repetido:=true;
+           end else begin
+             if anterior=NIL then begin
+               lista:=apuntador^.siguiente
+           end else begin
+               anterior^.siguiente:=apuntador^.siguiente;
+          end;
+               auxiliar:=apuntador;
+               apuntador:=apuntador^.siguiente;
+               dispose (auxiliar);
+               continue;
+          end;
+       end;
+
+       anterior:=apuntador;
+       apuntador:=apuntador^.siguiente;
       end;
+      {2} listado:=LeerListaAlReves(listaReves);
+    end; //if "ultimo"
 
-    end;
-
+  end; //opcion 'n'
+end; //fin procedimiento
 
 
 
@@ -449,17 +492,21 @@ REPEAT
   writeln;
   writeln ('1) Contar el numero de veces que se repite un numero en la lista');
   writeln;
-  writeln ('2) Borrar el primer numero repetido [borrarPrimeraOcurrencia]');
-  writeln (    'NOTA SI EL NUMERO SE REPITE: SE BORRARA EL PRIMERO ENCONTRADO');
+  writeln ('2) Borrar el primer numero repetido');
+  writeln (    '   NOTA: Si el numero se repite, se eliminara el primer encontrado');
   writeln;
-  writeln ('3) Borrar el ultimo numero repetido [borrarUltimaOcurrencia]');
-  writeln (    'NOTA: SI EL NUMERO SE REPTE SE BORRARA EL ULTIMO ENCONTRADO');
+  writeln ('3) Borrar el ultimo numero repetido');
+  writeln (    '   NOTA: Si el numero se repite, se eliminara el ultimo encontrado');
   writeln;
-  writeln ('4) BORRAROCURRENICAS --> PENDIENTE');
+  writeln ('4) Borrar ocurrencias - Permite: '+#13#10+
+           '  * Borrar todos los numeros repetidos'+#13#10+
+           '  * Borrar todos los numeros repetidos, a excepcion del primero'+#13#10+
+           '  * Borrar todos los numeros repetidos, a excepcion del ultimo');
   writeln;
   writeln ('5) Borrar toda la lista de numeros');
   writeln;
-  writeln ('6) Generar una nueva lista de numeros');
+  writeln ('6) Generar una nueva lista de numeros'+#13#10+
+           '   NOTA: Esto hara que se genere una nueva lista de numeros');
   writeln;
   writeln ('0) Salir del programa');
   writeln;
@@ -511,28 +558,37 @@ REPEAT
         writeln ('--BORRAR OCURRENCIAS--');
 
         borrarOcurrencias(numeroDelUsuario, todasRepeticiones1,PrimeroUltimo1, listado);
+        writeln;
+        writeln ('--------------------------------------------------------------');
+        readln;
       end; //case 4
 
 
       '5':begin
-        writeln ('--BORRAR TODA LA LISTA DE NUMEROS--');
+        writeln ('--BORRAR TODA LA LISTA DE NUMEROS--'+#13#10+
+                 'ATENCION!! Esta accion genera una lista nueva de numeros...');
         borrarLista (listado);
-        writeln ('La lista se ha borrado');
+        writeln;
+        writeln ('La lista anterior se ha borrado');
         writeln;
         writeln ('--------------------------------------------------------------');
        end; //case 5
+
+      '6':begin
+        writeln ('--GENERAR LISTA NUEVA DE NUMEROS--');
+        listado:=crearLista(numerosAImprimir);
+        writeln;
+        writeln ('Los numeros aleatorios son: ');
+        //imprimirLista(listado);
+        writeln;
+        writeln ('--------------------------------------------------------------');
+      end; //case 6
 
 
 
   end; //case principal
 
 until opcionUsuario='0';
-
-
-
-
-
-
 
 readln;
 end.
